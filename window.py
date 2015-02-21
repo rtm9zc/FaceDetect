@@ -1,7 +1,23 @@
+import string
+
 def CONST_MAXOFFSET = 7
 def CONST_MINOFFSET = 3
-
-class Window():
+class FaceWindow:
+    def __init__(self, lineIn):
+        features = string.split(lineIn)
+        self.fileName = features[0]
+        colVals = []
+        rowVals = []
+        for i in range(1, len(features)):
+            if (i % 2 == 1): #cast to float first because decimal in the strings
+                colVals.append(int(float(features[i])))
+            else:
+                rowVals.append(int(float(features[i])))
+        self.rowMin = min(rowVals)
+        self.rowMax = max(rowVals)
+        self.colMin = min(colVals)
+        self.colMax = max(colVals)
+class Window:
     def __init__(self, rowMin, rowMax, colMin, colMax, picShape):
         self.rowMin = rowMin - CONST_MINOFFSET
         self.rowMax = rowMax + CONST_MAXOFFSET
