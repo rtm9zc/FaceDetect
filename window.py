@@ -1,7 +1,8 @@
 import string
 
-def CONST_MAXOFFSET = 7
-def CONST_MINOFFSET = 3
+CONST_MAXOFFSET = 5
+CONST_MINOFFSET = 5
+
 class FaceWindow:
     def __init__(self, lineIn):
         features = string.split(lineIn)
@@ -17,12 +18,13 @@ class FaceWindow:
         self.rowMax = max(rowVals)
         self.colMin = min(colVals)
         self.colMax = max(colVals)
+
 class Window:
-    def __init__(self, rowMin, rowMax, colMin, colMax, picShape):
-        self.rowMin = rowMin - CONST_MINOFFSET
-        self.rowMax = rowMax + CONST_MAXOFFSET
-        self.colMin = colMin - CONST_MINOFFSET
-        self.colMax = colMax + CONST_MAXOFFSET
+    def __init__(self, faceWindow, picShape):
+        self.rowMin = faceWindow.rowMin - CONST_MINOFFSET
+        self.rowMax = faceWindow.rowMax + CONST_MAXOFFSET
+        self.colMin = faceWindow.colMin - CONST_MINOFFSET
+        self.colMax = faceWindow.colMax + CONST_MAXOFFSET
         self.width = self.rowMax - self.rowMin
         self.height = self.colMax - self.colMin
         self.shape = picShape
